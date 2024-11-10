@@ -3,112 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD de Productos</title>
+    <title>Gestión de Productos</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://emprendepyme.net/wp-content/uploads/2023/03/comercializar-productos-1200x742.jpg'); 
-            background-size: cover; 
-            background-position: center; 
+            font-family: 'Roboto', sans-serif;
+            background-color: #2d2d2d;
+            color: #eaeaea;
             margin: 0;
             padding: 20px;
-            color: #333; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         h1 {
             text-align: center;
-            color: #fff; 
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+            color: #ffa500;
+            margin-bottom: 20px;
         }
 
         a {
             text-decoration: none;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: transform 0.3s;
         }
 
         .btn-create {
-            background-color: #28a745; 
-            margin-bottom: 20px;
+            background-color: #ffa500;
             display: inline-block;
-        }
-
-        .btn-edit {
-            background-color: #007bff; 
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .btn-delete {
-            background-color: #dc3545; 
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 1em;
         }
 
         .btn-create:hover {
-            background-color: #218838; 
+            transform: scale(1.05);
         }
 
-        .btn-edit:hover {
-            background-color: #0056b3; 
+        .btn-edit {
+            background-color: #4e8ad2;
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: white;
+            margin-right: 5px;
         }
 
-        .btn-delete:hover {
-            background-color: #c82333; 
+        .btn-delete {
+            background-color: #e74c3c;
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .btn-edit:hover, .btn-delete:hover {
+            transform: scale(1.05);
         }
 
         table {
             width: 100%;
+            max-width: 800px;
             border-collapse: collapse;
-            margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.8); 
-            border-radius: 8px; 
-            overflow: hidden; 
+            background-color: #333333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         th, td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #444;
         }
 
         th {
-            background-color: #007bff; 
-            color: white;
+            background-color: #ffa500;
+            color: #2d2d2d;
+            font-size: 1.1em;
         }
 
         tr:hover {
-            background-color: #f1f1f1; 
+            background-color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #444;
         }
     </style>
 </head>
 <body>
-    <h1>Lista de Productos</h1>
-    <a href="{{ url_for('create') }}" class="btn-create">Crear Producto</a>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Descripción</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-        </tr>
-        {% for product in products %}
-        <tr>
-            <td>{{ product.id }}</td>
-            <td>{{ product.descripcion }}</td>
-            <td>{{ product.cantidad }}</td>
-            <td>{{ product.precio }}</td>
-            <td>
-                <a href="{{ url_for('update', product_id=product.id) }}" class="btn-edit">Editar</a>
-                <a href="{{ url_for('delete', product_id=product.id) }}" class="btn-delete">Eliminar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div>
+        <h1>Gestión de Productos</h1>
+        <a href="{{ url_for('create') }}" class="btn-create">Añadir Producto</a>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.descripcion }}</td>
+                <td>{{ product.cantidad }}</td>
+                <td>{{ product.precio }}</td>
+                <td>
+                    <a href="{{ url_for('update', product_id=product.id) }}" class="btn-edit">Editar</a>
+                    <a href="{{ url_for('delete', product_id=product.id) }}" class="btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

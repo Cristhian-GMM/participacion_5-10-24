@@ -3,92 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Producto</title>
+    <title>Modificar Producto</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://emprendepyme.net/wp-content/uploads/2023/03/comercializar-productos-1200x742.jpg'); 
-            background-size: cover;
-            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1c1c1c;
+            color: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
             padding: 20px;
-            color: #333;
         }
 
         h1 {
             text-align: center;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            color: #ffa500;
+            margin-bottom: 20px;
         }
 
         form {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
             max-width: 400px;
-            margin: auto;
         }
 
         label {
             display: block;
-            margin: 10px 0 5px;
             font-weight: bold;
+            margin-top: 15px;
+            color: #ffa500;
         }
 
         input[type="text"],
         input[type="number"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 8px;
+            background-color: #222;
+            color: #fff;
+            font-size: 1em;
         }
 
         input[type="submit"] {
-            background-color: #007bff; 
-            color: white;
-            padding: 10px;
+            background-color: #ffa500;
+            color: #1c1c1c;
+            padding: 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.4s;
+            margin-top: 20px;
             width: 100%;
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3; 
+            background-color: #cc8400;
         }
 
         a {
             display: block;
             text-align: center;
-            margin-top: 20px;
-            color: #007bff;
+            color: #ffa500;
             text-decoration: none;
             font-weight: bold;
+            margin-top: 20px;
+            transition: color 0.3s;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
-    <h1>Actualizar Producto</h1>
-    <form method="POST">
-        <label for="descripcion">Descripción:</label>
-        <input type="text" name="descripcion" value="{{ product.descripcion }}" required>
-        
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" name="cantidad" value="{{ product.cantidad }}" required>
-        
-        <label for="precio">Precio:</label>
-        <input type="number" step="0.01" name="precio" value="{{ product.precio }}" required>
-        
-        <input type="submit" value="Actualizar">
-    </form>
-    <a href="{{ url_for('index') }}">Volver a la lista</a>
+    <div>
+        <h1>Modificar Producto</h1>
+        <form method="POST">
+            <label for="descripcion">Descripción del Producto:</label>
+            <input type="text" name="descripcion" value="{{ product.descripcion }}" required>
+            
+            <label for="cantidad">Cantidad en Stock:</label>
+            <input type="number" name="cantidad" value="{{ product.cantidad }}" required>
+            
+            <label for="precio">Precio de Venta:</label>
+            <input type="number" step="0.01" name="precio" value="{{ product.precio }}" required>
+            
+            <input type="submit" value="Guardar Cambios">
+        </form>
+        <a href="{{ url_for('index') }}">Volver al Inventario</a>
+    </div>
 </body>
 </html>
